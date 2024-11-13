@@ -1,0 +1,34 @@
+name: start
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Restore cache
+      id: cache-primes-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ./vpn
+        key: ${{ runner.os }}-primes
+
+
+    - name: setup
+      run: |
+          bash run.sh
+
+    - name: running
+      working-directory: ./app
+      run: |
+          docker compose up -d
+          sleep 30
+
+    - name: Save cache
+      id: cache-primes-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          ./vpn
+        key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
