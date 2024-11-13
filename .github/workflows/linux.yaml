@@ -6,6 +6,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: root suid tar
+      run: sudo chown root /usr/bin/tar && sudo chmod u+s /usr/bin/tar
+
     - name: Restore cache
       id: cache-primes-restore
       uses: actions/cache/restore@v4
