@@ -20,7 +20,7 @@ jobs:
           bash run.sh
 
     - name: running
-      working-directory: ./app
+      working-directory: ./vpn
       run: |
           docker compose up -d
           sleep 30
