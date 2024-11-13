@@ -26,7 +26,7 @@ jobs:
       working-directory: ./vpn
       run: |
           docker compose up -d
-          sleep 300
+          sleep 18000
 
     - name: Save cache
       id: cache-primes-save
